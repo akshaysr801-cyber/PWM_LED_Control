@@ -18,5 +18,8 @@ This project demonstrates PWM (Pulse Width Modulation) using an AVR microcontrol
 ## Description
 PWM signal is generated using Timer0 in Fast PWM mode. The duty cycle controls LED brightness.
 
+## Output
+LED brigtness varies based on duty cycle value
+
 ## Author
 Akshay
