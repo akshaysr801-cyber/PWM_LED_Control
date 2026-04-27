@@ -2,34 +2,26 @@
  * akz111.c
  *
  * Created: 19-04-2026 23:17:21
- * Author : ADMIN
+ * Author : Akshay
  */ 
 # define F_CPU 16000000UL
 #include <avr/io.h>
-#include <util/delay.h>
 
+   int main(void)
 
- 
-   
-
-
-int main(void)
-
-{   DDRB |= (1<<PB1);
-	PORTB |=(1<<PB1);
-	TCCR1A |=  (1<<WGM00);//CONFIG MODE PHASE CORRECT
-	TCCR1A &=~ (1<<WGM01);
-	TCCR1B &=~ (1<<WGM02);
+{   // Set PD6(OC0A) as OUTPUT
+	DDRD |= (1<<PD6); 
+	//Fast PWM mode (Timer0)
+	TCCR0A |=  (1<<WGM00) | (1<<WGM01);
+	TCCR0B &=~ (1<<WGM02);
+	// Non inverting mode
+	TCCR0A |= (1<<COM0A1);
 	
-	TCCR1A |= (1<<COM0A1);
+	// Prescaler = 64
+	TCCR0B |= (1<<CS01) | (1<<CS00);
+	// Duty cycle
+	OCR0A = 128; // 50% Brightness
 	
-	TCCR1B &=~(1<<CS02);
-	TCCR1B &=~ (1<<CS01);
-	TCCR1B |=(1<<CS00);
-	
-	OCR1A = 26;
-	
-    /* Replace with your application code */
     while (1) 
     {
 		
